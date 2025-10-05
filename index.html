@@ -169,6 +169,438 @@
             color: var(--primary);
             font-weight: 500;
         }
+        
+        .instagram-link {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 15px;
+            padding: 8px 15px;
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .instagram-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(220, 39, 67, 0.3);
+            opacity: 0.9;
+        }
+        
+        .instagram-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            filter: brightness(0) invert(1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Character Share</h1>
+        <p class="welcome-message">
+            Welcome to my simple character sharing tool! I'm Tanmay, and I created this to help you easily share 
+            special characters with others. Just click the button below to copy the character to your clipboard.
+        </p>
+        <p><b>Attitude kam dikhaya kro ma'am 😏</b></p>
+        
+        <div class="character-box">
+            <div class="character"></div>
+            <button class="copy-btn" id="copyButton">Copy Character</button>
+        </div>
+        
+        <p> paste this character in your profile name</p>
+    </div>
+    
+    <div class="notification" id="notification">
+        Character copied to clipboard!
+    </div>
+    
+    <footer>
+        <p>A simple tool created with ❤️</p>
+        <p class="signature">- Tanmay</p>
+        <a href="https://www.instagram.com/_hexbreaker" target="_blank" rel="noopener" class="instagram-link">
+            <svg class="instagram-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+            @_hexbreaker
+        </a>
+    </footer>
+
+    <script>
+        const copyButton = document.getElementById('copyButton');
+        const notification = document.getElementById('notification');
+        
+        copyButton.addEventListener('click', () => {
+            // Copy the character to clipboard
+            const character = document.querySelector('.character').textContent;
+            navigator.clipboard.writeText(character).then(() => {
+                // Show notification
+                notification.classList.add('show');
+                
+                // Hide after 3 seconds
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+                
+                // Button animation
+                copyButton.textContent = 'Copied!';
+                copyButton.style.background = 'linear-gradient(45deg, #4CAF50, #2E7D32)';
+                
+                setTimeout(() => {
+                    copyButton.textContent = 'Copy Character';
+                    copyButton.style.background = 'linear-gradient(45deg, var(--primary), var(--secondary))';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Share | by Tanmay</title>
+    <style>
+        :root {
+            --primary: #4a6fa5;
+            --secondary: #166088;
+            --accent: #4fc3dc;
+            --light: #f8f9fa;
+            --dark: #343a40;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: var(--dark);
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+        
+        h1 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .welcome-message {
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        .character-box {
+            margin: 30px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .character {
+            font-size: 80px;
+            background: var(--light);
+            padding: 30px 50px;
+            border-radius: 10px;
+            display: inline-block;
+            border: 2px dashed #ccc;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .copy-btn {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(74, 111, 165, 0.3);
+            position: relative;
+            overflow: hidden;
+            outline: none;
+            width: auto;
+            display: inline-block;
+        }
+        
+        .copy-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(74, 111, 165, 0.4);
+        }
+        
+        .copy-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .copy-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+        
+        .copy-btn:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--secondary);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateX(200%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        footer {
+            margin-top: 30px;
+            color: #666;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        .signature {
+            font-style: italic;
+            margin-top: 10px;
+            color: var(--primary);
+            font-weight: 500;
+        }
+        
+        .instagram-link {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 15px;
+            padding: 8px 15px;
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .instagram-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(220, 39, 67, 0.3);
+            opacity: 0.9;
+        }
+        
+        .instagram-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            filter: brightness(0) invert(1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Character Share</h1>
+        <p class="welcome-message">
+            Welcome to my simple character sharing tool! I'm Tanmay, and I created this to help you easily share 
+            special characters with others. Just click the button below to copy the character to your clipboard.
+        </p>
+        <p><b>Attitude kam dikhaya kro ma'am 😏</b></p>
+        
+        <div class="character-box">
+            <div class="character"></div>
+            <button class="copy-btn" id="copyButton">Copy Character</button>
+        </div>
+        
+        <p> paste this character in your profile name</p>
+    </div>
+    
+    <div class="notification" id="notification">
+        Character copied to clipboard!
+    </div>
+    
+    <footer>
+        <p>A simple tool created with ❤️</p>
+        <p class="signature">- Tanmay</p>
+        <a href="https://www.instagram.com/_hexbreaker" target="_blank" rel="noopener" class="instagram-link">
+            <svg class="instagram-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+            @_hexbreaker
+        </a>
+    </footer>
+
+    <script>
+        const copyButton = document.getElementById('copyButton');
+        const notification = document.getElementById('notification');
+        
+        copyButton.addEventListener('click', () => {
+            // Copy the character to clipboard
+            const character = document.querySelector('.character').textContent;
+            navigator.clipboard.writeText(character).then(() => {
+                // Show notification
+                notification.classList.add('show');
+                
+                // Hide after 3 seconds
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+                
+                // Button animation
+                copyButton.textContent = 'Copied!';
+                copyButton.style.background = 'linear-gradient(45deg, #4CAF50, #2E7D32)';
+                
+                setTimeout(() => {
+                    copyButton.textContent = 'Copy Character';
+                    copyButton.style.background = 'linear-gradient(45deg, var(--primary), var(--secondary))';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        });
+    </script>
+</body>
+</html>            font-size: 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(74, 111, 165, 0.3);
+            position: relative;
+            overflow: hidden;
+            outline: none;
+            width: auto;
+            display: inline-block;
+        }
+        
+        .copy-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(74, 111, 165, 0.4);
+        }
+        
+        .copy-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .copy-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+        
+        .copy-btn:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--secondary);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateX(200%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        footer {
+            margin-top: 30px;
+            color: #666;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        .signature {
+            font-style: italic;
+            margin-top: 10px;
+            color: var(--primary);
+            font-weight: 500;
+        }
 
         <a class="insta-btn" href="https://www.instagram.com/yourusername" target="_blank" rel="noopener">
   Follow me on Instagram
